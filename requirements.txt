@@ -1,0 +1,4 @@
+gunicorn==20.0.4
+flask==1.1.2
+requests==2.25.0
+rockset==0.7.49
