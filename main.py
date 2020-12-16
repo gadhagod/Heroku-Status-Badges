@@ -4,7 +4,6 @@ from rockset import Client, ParamDict, Q, F
 from os import getenv
 
 rs = Client(api_key=getenv('ROCKSET_SECRET'), api_server='api.rs2.usw2.rockset.com')
-collection = rs.Collection.retrieve('badges_hps')
 
 app = flask.Flask(__name__)
 
@@ -21,8 +20,3 @@ def running(app_name):
         return(flask.send_file('badges/not_found.png', mimetype='image/png'))
     else:
         return(flask.send_file('badges/running.png', mimetype='image/png'))
-
-@app.after_request
-def hits(response):
-    collection.add_docs([{}])
-    return(response)
